@@ -1,0 +1,83 @@
+@startuml Diagrama_de_Secuencia
+
+actor Usuario
+entity Base_de_Datos
+control Sistema
+
+participant "Proyecto" as Proyecto
+participant "Miembros" as Miembros
+participant "Tareas" as Tareas
+participant "Objetivos" as Objetivos
+participant "Hitos" as Hitos
+participant "RegistroHistorial" as RegistroHistorial
+
+activate Usuario
+Usuario -> Sistema: Crear Nuevo Proyecto
+activate Sistema
+Sistema -> Base_de_Datos: Crear Proyecto
+activate Base_de_Datos
+Base_de_Datos --> Sistema: Confirmación de Creación de Proyecto
+deactivate Base_de_Datos
+Sistema -> Proyecto: Crear Proyecto
+activate Proyecto
+Proyecto -> Base_de_Datos: Almacenar Datos del Proyecto
+activate Base_de_Datos
+Base_de_Datos --> Proyecto: Confirmación de Almacenamiento
+deactivate Base_de_Datos
+Proyecto --> Sistema: Proyecto Creado
+deactivate Proyecto
+Sistema --> Usuario: Proyecto Creado
+
+Usuario -> Proyecto: Agregar Miembros al Proyecto
+activate Proyecto
+Proyecto -> Miembros: Agregar Miembro
+activate Miembros
+Miembros -> Base_de_Datos: Asignar Rol al Miembro
+activate Base_de_Datos
+Base_de_Datos --> Miembros: Confirmación de Asignación de Rol
+deactivate Base_de_Datos
+Miembros --> Proyecto: Miembro Agregado con Rol
+deactivate Miembros
+Proyecto --> Usuario: Miembro Agregado con Rol
+deactivate Proyecto
+
+Usuario -> Objetivos: Establecer Objetivo
+activate Objetivos
+Objetivos -> Proyecto: Asignar Objetivo al Proyecto
+activate Proyecto
+Proyecto -> Base_de_Datos: Almacenar Objetivo
+activate Base_de_Datos
+Base_de_Datos --> Proyecto: Confirmación de Almacenamiento de Objetivo
+deactivate Base_de_Datos
+Proyecto --> Objetivos: Objetivo Asignado
+deactivate Proyecto
+Objetivos --> Usuario: Objetivo Asignado
+deactivate Objetivos
+
+Usuario -> Hitos: Establecer Hito
+activate Hitos
+Hitos -> Proyecto: Asignar Hito al Proyecto
+activate Proyecto
+Proyecto -> Base_de_Datos: Almacenar Hito
+activate Base_de_Datos
+Base_de_Datos --> Proyecto: Confirmación de Almacenamiento de Hito
+deactivate Base_de_Datos
+Proyecto --> Hitos: Hito Asignado
+deactivate Proyecto
+Hitos --> Usuario: Hito Asignado
+deactivate Hitos
+
+Usuario -> RegistroHistorial: Registrar Acción
+activate RegistroHistorial
+RegistroHistorial -> Proyecto: Registrar Historial de Acción
+activate Proyecto
+Proyecto -> Base_de_Datos: Almacenar Registro de Historial
+activate Base_de_Datos
+Base_de_Datos --> Proyecto: Confirmación de Almacenamiento de Registro de Historial
+deactivate Base_de_Datos
+Proyecto --> RegistroHistorial: Registro de Historial Almacenado
+deactivate Proyecto
+RegistroHistorial --> Usuario: Acción Registrada
+deactivate RegistroHistorial
+
+@enduml

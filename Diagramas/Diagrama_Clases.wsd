@@ -1,0 +1,82 @@
+@startuml Diagrama de Clases
+
+
+class Usuarios {
+    - id: int
+    - nombre: String
+    - correoElectronico: String
+    - contraseña: String
+
+    + seleccionarMiembro()
+}
+
+class Proyecto {
+  - id: int
+  - nombre: String
+  - descripcion: String
+  - fechaInicio: Date
+  - fechaFin: Date
+  - estado: String
+
+  + agregarTareas()
+  + agregarObjetivos()
+  + agregarHitos()
+}
+
+class Miembros {
+  - id: int
+  - nombre: String
+  - correoElectronico: String
+  - rol: String
+  - UsuarioId: Usuarios
+
+  + agregarProyecto()
+}
+
+class Tareas {
+  - id: int
+  - nombre: String
+  - descripcion: String
+  - estado: String
+  - fechaVencimiento: Date
+  - prioridad: String
+
+  + cambiarEstado()
+  + notificarTarea()
+}
+
+class Objetivos {
+  - id: int
+  - descripcion: String
+  - fechaObjetivo: Date
+
+  + marcarObjetivo()
+}
+
+class Hitos {
+  - id: int
+  - descripcion: String
+  - fechaHito: Date
+
+  + marcarComoCompletad()
+}
+
+class RegistroHistorial {
+  - id: int
+  - fecha: Date
+  - Usuarios: Miembros
+  - accion: String
+  - detalle: String
+
+  + consultarHistorial()
+}
+
+Usuarios -- Miembros
+Miembros o-- Proyecto
+Proyecto *-- Tareas
+Proyecto *-- Objetivos
+Proyecto *-- Hitos
+RegistroHistorial *-- Proyecto
+
+
+@enduml

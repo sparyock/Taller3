@@ -1,0 +1,75 @@
+@startuml Diagrama de Casos de Uso
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Usuario as usuario
+actor MiembroEquipo as miembroEquipo
+actor ResponsableTarea as responsableTarea
+
+package "Creación de Proyectos" {
+  usecase "Crear Proyecto" as UC1
+  usecase "Agregar Miembro Equipo" as UC2
+  usecase "Establecer Objetivos y Hitos" as UC3
+  usecase "Crear Proyecto Recurrente" as UC4
+  usecase "Asignar Identificador Único" as UC5
+}
+
+package "Gestión de Tareas" {
+  usecase "Crear Tarea" as UC6
+  usecase "Asignar Tarea" as UC7
+  usecase "Mostrar Tareas Pendientes" as UC8
+  usecase "Asignar Prioridades" as UC9
+  usecase "Enviar Notificaciones" as UC10
+  usecase "Agrupar Tareas" as UC11
+}
+
+package "Seguimiento de Progreso" {
+  usecase "Seguimiento en Tiempo Real" as UC12
+  usecase "Mostrar Gráficos y Tablas" as UC13
+  usecase "Generar Informes" as UC14
+  usecase "Ajustes en la Planificación" as UC15
+  usecase "Integración con Herramientas de Gestión del Tiempo" as UC16
+}
+
+package "Colaboración en Equipo" {
+  usecase "Comunicación y Colaboración" as UC17
+  usecase "Sistema de Comentarios" as UC18
+  usecase "Intercambio de Archivos" as UC19
+  usecase "Registro de Interacciones y Cambios" as UC20
+  usecase "Programación de Reuniones" as UC21
+}
+
+usuario --> (Creación de Proyectos)
+usuario --> (Gestión de Tareas)
+usuario --> (Seguimiento de Progreso)
+usuario --> (Colaboración en Equipo)
+MiembroEquipo --> (Colaboración en Equipo)
+ResponsableTarea --> (Gestión de Tareas)
+
+(Creación de Proyectos) --> UC1
+(Creación de Proyectos) --> UC2
+(Creación de Proyectos) --> UC3
+(Creación de Proyectos) --> UC4
+(Creación de Proyectos) --> UC5
+
+(Gestión de Tareas) --> UC6
+(Gestión de Tareas) --> UC7
+(Gestión de Tareas) --> UC8
+(Gestión de Tareas) --> UC9
+(Gestión de Tareas) --> UC10
+(Gestión de Tareas) --> UC11
+
+(Seguimiento de Progreso) --> UC12
+(Seguimiento de Progreso) --> UC13
+(Seguimiento de Progreso) --> UC14
+(Seguimiento de Progreso) --> UC15
+(Seguimiento de Progreso) --> UC16
+
+(Colaboración en Equipo) --> UC17
+(Colaboración en Equipo) --> UC18
+(Colaboración en Equipo) --> UC19
+(Colaboración en Equipo) --> UC20
+(Colaboración en Equipo) --> UC21
+
+@enduml
